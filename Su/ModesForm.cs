@@ -42,8 +42,10 @@ namespace Su
 		{
 			selectedMode = modes[cbModes.SelectedIndex];
 			if (plowMashine != null)
+			{
 				btnCalculate.Enabled = true;
-			parametersView.Params = ParametersHelper.GetParams(selectedMode.InputParams, plowMashine);
+				parametersView.Params = ParametersHelper.GetParams(selectedMode.InputParams, plowMashine);
+			}
 		}
 	}
 }
