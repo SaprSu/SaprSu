@@ -1,0 +1,16 @@
+﻿<Window x:Class="ImportTable.Window1"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Импортирование таблицы в модуль" Height="241" Width="326" ResizeMode="NoResize" ShowInTaskbar="True" Loaded="Window_Loaded">
+    <Grid>
+        <Label Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="label1" VerticalAlignment="Top" Width="96">Sql Server</Label>
+        <ComboBox Height="23" Margin="114,12,12,0" Name="cmbbxSqlServer" VerticalAlignment="Top" SelectionChanged="cmbbxSqlServer_SelectionChanged" />
+        <Label Height="28" HorizontalAlignment="Left" Margin="12,40,0,0" Name="label2" VerticalAlignment="Top" Width="96">Database</Label>
+        <ComboBox Height="23" Margin="114,41,12,0" Name="cmbbxDatabase" VerticalAlignment="Top" SelectionChanged="cmbbxDatabase_SelectionChanged" />
+        <Label Height="28" HorizontalAlignment="Left" Margin="12,68,0,0" Name="label3" VerticalAlignment="Top" Width="96">Table</Label>
+        <ComboBox Height="23" Margin="114,70,12,0" Name="cmbbxTables" VerticalAlignment="Top" SelectionChanged="cmbbxTables_SelectionChanged" />
+        <Label Margin="12,0,12,67" Name="label4" Height="26" VerticalAlignment="Bottom">Введите название модуля</Label>
+        <TextBox Height="23" Margin="12,0,12,38" Name="txbxModuleName" VerticalAlignment="Bottom" />
+        <Button Height="23" Margin="12,0,12,9" Name="btnCreate" VerticalAlignment="Bottom" Click="btnCreate_Click">Создать</Button>
+    </Grid>
+</Window>

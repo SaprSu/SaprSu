@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SUMetadataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="SUMetadataModelStoreContainer">
+          <EntitySet Name="MetadataFields" EntityType="SUMetadataModel.Store.MetadataFields" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MetadataModules" EntityType="SUMetadataModel.Store.MetadataModules" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_MetadataFields_MetadataModules" Association="SUMetadataModel.Store.FK_MetadataFields_MetadataModules">
+            <End Role="MetadataModules" EntitySet="MetadataModules" />
+            <End Role="MetadataFields" EntitySet="MetadataFields" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="MetadataFields">
+          <Key>
+            <PropertyRef Name="FieldName" />
+          </Key>
+          <Property Name="FieldName" Type="varchar" Nullable="false" MaxLength="254" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ModuleName" Type="varchar" Nullable="false" MaxLength="254" />
+          <Property Name="ClrType" Type="nchar" Nullable="false" MaxLength="254" />
+        </EntityType>
+        <EntityType Name="MetadataModules">
+          <Key>
+            <PropertyRef Name="ModuleName" />
+          </Key>
+          <Property Name="ModuleName" Type="varchar" Nullable="false" MaxLength="254" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <Association Name="FK_MetadataFields_MetadataModules">
+          <End Role="MetadataModules" Type="SUMetadataModel.Store.MetadataModules" Multiplicity="1" />
+          <End Role="MetadataFields" Type="SUMetadataModel.Store.MetadataFields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MetadataModules">
+              <PropertyRef Name="ModuleName" />
+            </Principal>
+            <Dependent Role="MetadataFields">
+              <PropertyRef Name="ModuleName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SUMetadataModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="SUMetadataEntities">
+          <EntitySet Name="FieldMetadataSet" EntityType="SUMetadataModel.FieldMetadata" />
+          <EntitySet Name="ModuleMetadataSet" EntityType="SUMetadataModel.ModuleMetadata" />
+          <AssociationSet Name="FK_MetadataFields_MetadataModules" Association="SUMetadataModel.FK_MetadataFields_MetadataModules">
+            <End Role="MetadataModules" EntitySet="ModuleMetadataSet" />
+            <End Role="MetadataFields" EntitySet="FieldMetadataSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="FieldMetadata">
+          <Key>
+            <PropertyRef Name="FieldName" />
+          </Key>
+          <Property Name="FieldName" Type="String" Nullable="false" MaxLength="254" Unicode="false" FixedLength="true" />
+          <Property Name="Description" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="MetadataModules" Relationship="SUMetadataModel.FK_MetadataFields_MetadataModules" FromRole="MetadataFields" ToRole="MetadataModules" />
+          <Property Name="ClrType" Type="String" Nullable="false" /></EntityType>
+        <EntityType Name="ModuleMetadata">
+          <Key>
+            <PropertyRef Name="ModuleName" />
+          </Key>
+          <Property Name="ModuleName" Type="String" Nullable="false" MaxLength="254" Unicode="false" FixedLength="true" />
+          <Property Name="Description" Type="String" MaxLength="1000" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="MetadataFields" Relationship="SUMetadataModel.FK_MetadataFields_MetadataModules" FromRole="MetadataModules" ToRole="MetadataFields" />
+          </EntityType>
+        <Association Name="FK_MetadataFields_MetadataModules">
+          <End Role="MetadataModules" Type="SUMetadataModel.ModuleMetadata" Multiplicity="1" />
+          <End Role="MetadataFields" Type="SUMetadataModel.FieldMetadata" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="SUMetadataModelStoreContainer" CdmEntityContainer="SUMetadataEntities">
+          <EntitySetMapping Name="FieldMetadataSet">
+            <EntityTypeMapping TypeName="IsTypeOf(SUMetadataModel.FieldMetadata)">
+              <MappingFragment StoreEntitySet="MetadataFields">
+                <ScalarProperty Name="ClrType" ColumnName="ClrType" />
+                <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModuleMetadataSet">
+            <EntityTypeMapping TypeName="IsTypeOf(SUMetadataModel.ModuleMetadata)">
+              <MappingFragment StoreEntitySet="MetadataModules">
+                <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK_MetadataFields_MetadataModules" TypeName="SUMetadataModel.FK_MetadataFields_MetadataModules" StoreEntitySet="MetadataFields">
+            <EndProperty Name="MetadataModules">
+              <ScalarProperty Name="ModuleName" ColumnName="ModuleName" />
+            </EndProperty>
+            <EndProperty Name="MetadataFields">
+              <ScalarProperty Name="FieldName" ColumnName="FieldName" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="MetadataModel">
+        <EntityTypeShape EntityType="SUMetadataModel.FieldMetadata" Width="1.5" PointX="3" PointY="0.875" Height="1.59568359375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SUMetadataModel.MetadataModules" Width="1.5" PointX="0.75" PointY="0.875" Height="1.59568359375" IsExpanded="true" />
+        <AssociationConnector Association="SUMetadataModel.FK_MetadataFields_MetadataModules" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.125" PointY="1.672841796875" />
+          <ConnectorPoint PointX="3" PointY="1.672841796875" /></AssociationConnector>
+        <EntityTypeShape EntityType="SUMetadataModel.ModuleMetadata" Width="1.5" PointX="0.625" PointY="0.875" Height="1.59568359375" /></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

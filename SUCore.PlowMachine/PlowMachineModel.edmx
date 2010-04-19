@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PlowMachineModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="PlowMachineModelStoreContainer">
+          <EntitySet Name="PlowMachines" EntityType="PlowMachineModel.Store.PlowMachines" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="PlowMachines">
+          <Key>
+            <PropertyRef Name="PlowMachineId" />
+          </Key>
+          <Property Name="PlowMachineId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="254" />
+          <Property Name="IsPrototype" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+          <Property Name="ModifidedOn" Type="datetime" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PlowMachineModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="PlowMachineEntities">
+          <EntitySet Name="PlowMachineEntitySet" EntityType="PlowMachineModel.PlowMachineEntity" />
+        </EntityContainer>
+        <EntityType Name="PlowMachineEntity" a:TypeAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
+          <Key>
+            <PropertyRef Name="PlowMachineId" />
+          </Key>
+          <Property Name="PlowMachineId" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="254" Unicode="true" FixedLength="false" />
+          <Property Name="IsPrototype" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
+          <Property Name="ModifidedOn" Type="DateTime" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="PlowMachineModelStoreContainer" CdmEntityContainer="PlowMachineEntities">
+          <EntitySetMapping Name="PlowMachineEntitySet">
+            <EntityTypeMapping TypeName="IsTypeOf(PlowMachineModel.PlowMachineEntity)">
+              <MappingFragment StoreEntitySet="PlowMachines">
+                <ScalarProperty Name="PlowMachineId" ColumnName="PlowMachineId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsPrototype" ColumnName="IsPrototype" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ModifidedOn" ColumnName="ModifidedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="PlowMachineModel">
+        <EntityTypeShape EntityType="PlowMachineModel.PlowMachineEntity" Width="1.875" PointX="0.75" PointY="0.75" Height="1.9802864583333331" IsExpanded="true" /></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
