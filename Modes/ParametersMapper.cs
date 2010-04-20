@@ -36,7 +36,7 @@ namespace Su.Modes
 
 		private static void UpdateCache(Type type)
 		{
-			Dictionary<string, PropertyInfo> propertyByName = new Dictionary<string, PropertyInfo>();
+			var propertyByName = new Dictionary<string, PropertyInfo>();
 			PropertyInfo[] props = type.GetProperties();
 			foreach (PropertyInfo pi in props)
 			{
@@ -55,12 +55,12 @@ namespace Su.Modes
 		{
 			Type type = typeof(T);
 			var propertyByName = GetProperties(type);
-			Dictionary<string, object> dictionary = new Dictionary<string, object>();
+			var dictionary = new Dictionary<string, object>();
 			foreach (string key in propertyByName.Keys)
 			{
 				dictionary[key] = propertyByName[key].GetValue(parameterObject, null);
 			}
-			Parameters result = new Parameters();
+			var result = new Parameters();
 			foreach (var pair in dictionary)
 			{
 				result.Add(pair.Key, pair.Value);

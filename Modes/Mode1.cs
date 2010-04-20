@@ -37,8 +37,8 @@ namespace Su.Modes
 			output.C = 1 - output.Kp;
 
 			output.Vc = output.Vk * output.C;
-			    
-			return ParametersMapper.Map<Output>(output);
+
+			return ParametersMapper.Map(output);
 		}
 
 		class Input
