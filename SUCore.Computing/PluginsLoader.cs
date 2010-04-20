@@ -46,9 +46,8 @@ namespace SUCore.Computing
 			{
 				throw new DirectoryNotFoundException("Директория '" + executingFolder + "\\" + modulesFolder + "' не найдена.");
 			}
-
 			string[] modulesFiles = Directory.GetFiles(executingFolder + "\\" + modulesFolder, "*.dll");
-
+			      
 			List<SULibrary.IComputingPlugin> modules = new List<SULibrary.IComputingPlugin>();
 
 			foreach (string moduleFile in modulesFiles)

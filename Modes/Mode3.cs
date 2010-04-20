@@ -59,7 +59,7 @@ namespace Su.Modes
 			public double F { get; set; }
 			[Parameter("pl_ug")]
 			public double Lambda { get; set; }
-			[Parameter("ko_razr")]
+			/*[Parameter("ko_razr")]
 			public double Fi { get; set; }
 			[Parameter("ko_zap_tab")]
 			public double Fi2 { get; set; }
@@ -68,7 +68,7 @@ namespace Su.Modes
 			[Parameter("a0_pol")]
 			public double A0 { get; set; }
 			[Parameter("a1_pol")]
-			public double A1 { get; set; }
+			public double A1 { get; set; }*/
 			[Parameter("a2_pol")]
 			public double A2 { get; set; }
 		}
