@@ -1,0 +1,8 @@
+*.dll
+*.pdb
+bin
+obj
+*.FileListAbsolute.txt
+*.[cC]ache
+*ReSharper*
+*.suo
