@@ -34,7 +34,7 @@ namespace SUCore.Computing
 					}
 				}
 			}
-			return result;
+			return result.OrderBy(a => a.Name).ToList();
 		}
 
 		public static List<SULibrary.IComputingPlugin> LoadPlugins()
