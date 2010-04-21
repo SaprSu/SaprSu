@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using SULibrary;
 
 namespace Su.Modes
 {
+	/// <summary>
+	/// Режим 1
+	/// </summary>
 	public class Mode1 : IMode
 	{
 		public string Name

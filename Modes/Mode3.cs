@@ -6,6 +6,9 @@ using SULibrary;
 
 namespace Su.Modes
 {
+	/// <summary>
+	/// Режим 3
+	/// </summary>
 	public class Mode3 : IMode
 	{
 		public string Name
