@@ -28,10 +28,6 @@ namespace Su.Modes
 
 			output.Vk = input.MaxVk;
 
-			var lambdaN = input.Lambda / input.Fi;
-
-			output.Qkr = 60 * input.F * input.Fi * input.MaxVk * lambdaN;
-
 			output.Kp = input.Q / output.Qkr;
 
 			output.C = 1 - output.Kp;
