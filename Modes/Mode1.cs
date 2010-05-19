@@ -10,7 +10,7 @@ namespace Su.Modes
 	{
 		public string Name
 		{
-			get { return "Режим 1"; }
+			get { return "01. Одноструговая, с отстающим стругом, челноковая"; }
 		}
 
 		public string[] InputParams
@@ -28,15 +28,22 @@ namespace Su.Modes
 
 			output.Vk = input.MaxVk;
 
-			var lambdaN = input.Lambda / input.Fi;
+			var gammaN = input.Gamma / input.Fi;
 
-			output.Qkr = 60 * input.F * input.Fi * input.MaxVk * lambdaN;
+			output.Qkr = 60 * input.F * input.Fi * input.MaxVk * gammaN;
 
 			output.Kp = input.Q / output.Qkr;
 
 			output.C = 1 - output.Kp;
 
 			output.Vc = output.Vk * output.C;
+
+			// h' и полином
+			var x = output.C;
+			var h = input.A2 * x * x + input.A1 * x + input.A0;
+
+			output.MinH = h*10*input.F*input.Fi2/input.MinH;
+			output.MaxH = h * 10 * input.F * input.Fi2 / input.MaxH;
 
 			return ParametersMapper.Map(output);
 		}
@@ -49,16 +56,12 @@ namespace Su.Modes
 			public double MaxH { get; set; }
 			[Parameter("min_mopl")]
 			public double MinH { get; set; }
-			[Parameter("depth_rez_max")]
-			public double MaxDepth { get; set; }
-			[Parameter("depth_rez_min")]
-			public double MinDepth { get; set; }
 			[Parameter("sko_konv_max")]
 			public double MaxVk { get; set; }
 			[Parameter("s_sech_konv")]
 			public double F { get; set; }
 			[Parameter("pl_ug")]
-			public double Lambda { get; set; }
+			public double Gamma { get; set; }
 			[Parameter("ko_razr")]
 			public double Fi { get; set; }
 			[Parameter("ko_zap_tab")]

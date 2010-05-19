@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mode12.cs" />
+    <Compile Include="Mode14.cs" />
+    <Compile Include="Mode13.cs" />
+    <Compile Include="Mode11.cs" />
+    <Compile Include="Mode6.cs" />
+    <Compile Include="Mode9.cs" />
     <Compile Include="Mode7.cs" />
     <Compile Include="Mode3.cs" />
     <Compile Include="Mode2.cs" />

@@ -13,7 +13,7 @@ namespace Su.Modes
 	{
 		public string Name
 		{
-			get { return "Режим 7"; }
+			get { return "07. Двухструговая, одна полоса, челноковая"; }
 		}
 
 		public string[] InputParams
