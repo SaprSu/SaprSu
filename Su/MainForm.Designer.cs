@@ -31,7 +31,11 @@
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.plowMachineBaseView1 = new Su.PlowMachineBaseView();
 			this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+			this.btnSetModes = new System.Windows.Forms.Button();
+			this.computingProcessorControl1 = new Su.Controls.ComputingProcessorControl();
+			this.pluginsView1 = new Su.Views.PluginsView();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,10 +54,8 @@
 			this.tlstrSaveAsPototype = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
 			this.btnDelete = new System.Windows.Forms.ToolStripButton();
-			this.plowMachineBaseView1 = new Su.PlowMachineBaseView();
-			this.computingProcessorControl1 = new Su.Controls.ComputingProcessorControl();
-			this.pluginsView1 = new Su.Views.PluginsView();
-			this.btnSetModes = new System.Windows.Forms.Button();
+			this.построитьЧертежToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
 			this.toolStripContainer1.ContentPanel.SuspendLayout();
 			this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
 			this.toolStripContainer1.SuspendLayout();
@@ -105,6 +107,16 @@
 			this.splitContainer1.SplitterDistance = 298;
 			this.splitContainer1.TabIndex = 0;
 			// 
+			// plowMachineBaseView1
+			// 
+			this.plowMachineBaseView1.CurrentPlowMachine = null;
+			this.plowMachineBaseView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.plowMachineBaseView1.Location = new System.Drawing.Point(0, 0);
+			this.plowMachineBaseView1.Mode = SUPresentation.View.ViewMode.New;
+			this.plowMachineBaseView1.Name = "plowMachineBaseView1";
+			this.plowMachineBaseView1.Size = new System.Drawing.Size(298, 443);
+			this.plowMachineBaseView1.TabIndex = 0;
+			// 
 			// splitContainer2
 			// 
 			this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -126,6 +138,38 @@
 			this.splitContainer2.SplitterDistance = 212;
 			this.splitContainer2.TabIndex = 0;
 			// 
+			// btnSetModes
+			// 
+			this.btnSetModes.Location = new System.Drawing.Point(12, 177);
+			this.btnSetModes.Name = "btnSetModes";
+			this.btnSetModes.Size = new System.Drawing.Size(75, 23);
+			this.btnSetModes.TabIndex = 1;
+			this.btnSetModes.Text = "Режимы";
+			this.btnSetModes.UseVisualStyleBackColor = true;
+			this.btnSetModes.Click += new System.EventHandler(this.btnSetModes_Click);
+			// 
+			// computingProcessorControl1
+			// 
+			this.computingProcessorControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.computingProcessorControl1.Location = new System.Drawing.Point(0, 0);
+			this.computingProcessorControl1.MinimumSize = new System.Drawing.Size(0, 200);
+			this.computingProcessorControl1.Name = "computingProcessorControl1";
+			this.computingProcessorControl1.PlowMachine = null;
+			this.computingProcessorControl1.Plugins = ((System.Collections.Generic.List<SULibrary.IComputingPlugin>)(resources.GetObject("computingProcessorControl1.Plugins")));
+			this.computingProcessorControl1.Size = new System.Drawing.Size(524, 212);
+			this.computingProcessorControl1.TabIndex = 0;
+			this.computingProcessorControl1.UseLog = false;
+			this.computingProcessorControl1.Load += new System.EventHandler(this.computingProcessorControl1_Load);
+			// 
+			// pluginsView1
+			// 
+			this.pluginsView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pluginsView1.Location = new System.Drawing.Point(0, 0);
+			this.pluginsView1.Name = "pluginsView1";
+			this.pluginsView1.PlowMachine = null;
+			this.pluginsView1.Size = new System.Drawing.Size(524, 227);
+			this.pluginsView1.TabIndex = 0;
+			// 
 			// menuStrip1
 			// 
 			this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
@@ -146,6 +190,8 @@
             this.toolStripSeparator,
             this.saveToolStripMenuItem,
             this.toolStripMenuItem2,
+            this.toolStripSeparator2,
+            this.построитьЧертежToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -295,47 +341,17 @@
 			this.btnDelete.Text = "Удалить СУ";
 			this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
 			// 
-			// plowMachineBaseView1
+			// построитьЧертежToolStripMenuItem
 			// 
-			this.plowMachineBaseView1.CurrentPlowMachine = null;
-			this.plowMachineBaseView1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.plowMachineBaseView1.Location = new System.Drawing.Point(0, 0);
-			this.plowMachineBaseView1.Mode = SUPresentation.View.ViewMode.New;
-			this.plowMachineBaseView1.Name = "plowMachineBaseView1";
-			this.plowMachineBaseView1.Size = new System.Drawing.Size(298, 443);
-			this.plowMachineBaseView1.TabIndex = 0;
+			this.построитьЧертежToolStripMenuItem.Name = "построитьЧертежToolStripMenuItem";
+			this.построитьЧертежToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+			this.построитьЧертежToolStripMenuItem.Text = "Построить чертеж";
+			this.построитьЧертежToolStripMenuItem.Click += new System.EventHandler(this.построитьЧертежToolStripMenuItem_Click);
 			// 
-			// computingProcessorControl1
+			// toolStripSeparator2
 			// 
-			this.computingProcessorControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.computingProcessorControl1.Location = new System.Drawing.Point(0, 0);
-			this.computingProcessorControl1.MinimumSize = new System.Drawing.Size(0, 200);
-			this.computingProcessorControl1.Name = "computingProcessorControl1";
-			this.computingProcessorControl1.PlowMachine = null;
-			this.computingProcessorControl1.Plugins = ((System.Collections.Generic.List<SULibrary.IComputingPlugin>)(resources.GetObject("computingProcessorControl1.Plugins")));
-			this.computingProcessorControl1.Size = new System.Drawing.Size(524, 212);
-			this.computingProcessorControl1.TabIndex = 0;
-			this.computingProcessorControl1.UseLog = false;
-			this.computingProcessorControl1.Load += new System.EventHandler(this.computingProcessorControl1_Load);
-			// 
-			// pluginsView1
-			// 
-			this.pluginsView1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.pluginsView1.Location = new System.Drawing.Point(0, 0);
-			this.pluginsView1.Name = "pluginsView1";
-			this.pluginsView1.PlowMachine = null;
-			this.pluginsView1.Size = new System.Drawing.Size(524, 227);
-			this.pluginsView1.TabIndex = 0;
-			// 
-			// btnSetModes
-			// 
-			this.btnSetModes.Location = new System.Drawing.Point(12, 177);
-			this.btnSetModes.Name = "btnSetModes";
-			this.btnSetModes.Size = new System.Drawing.Size(75, 23);
-			this.btnSetModes.TabIndex = 1;
-			this.btnSetModes.Text = "Режимы";
-			this.btnSetModes.UseVisualStyleBackColor = true;
-			this.btnSetModes.Click += new System.EventHandler(this.btnSetModes_Click);
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(198, 6);
 			// 
 			// MainForm
 			// 
@@ -392,6 +408,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripButton btnDelete;
 		private System.Windows.Forms.Button btnSetModes;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripMenuItem построитьЧертежToolStripMenuItem;
 
       
       

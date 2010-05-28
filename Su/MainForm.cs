@@ -212,5 +212,10 @@ namespace Su
 		{
 			new ModesForm(this.plowMachineBaseView1.CurrentPlowMachine).Show();
 		}
+
+		private void построитьЧертежToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Process.Start(System.IO.Path.GetFullPath("gendemo.exe"));
+		}
 	}
 }
